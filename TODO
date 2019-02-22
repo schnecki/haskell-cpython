@@ -1,0 +1,2 @@
+1. Finish polishing package.yaml (add extra deps, c source, etc)
+2. Add more tests (quickcheck some numpy, quickcheck some type translation)
