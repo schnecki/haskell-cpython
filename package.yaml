@@ -9,6 +9,7 @@ copyright:           "Copyright (C) 2015 John Millikin"
 extra-source-files:
 - README.md
 - ChangeLog.md
+- cbits/hscpython-shim.h
 
 synopsis:            Bindings for libpython
 category:            Foreign
@@ -19,8 +20,19 @@ dependencies:
 - bytestring
 - text
 
+build-tools:
+- c2hs >= 0.15
+include-dirs:
+- cbits
+
 library:
-  source-dirs: src
+  source-dirs:           src
+  ghc-options:
+  - -Wall
+  - -O2
+  - -fno-warn-orphans
+  cc-options:
+  - -fPIC
 
 tests:
   python-test:
