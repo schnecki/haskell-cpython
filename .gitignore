@@ -1,5 +1,8 @@
+# vim swapfiles
 *.swo
 *.swp
 *.swn
 
+# stack build intermediates
 /.stack-work/**
+*.cabal
