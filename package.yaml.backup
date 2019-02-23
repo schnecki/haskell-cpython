@@ -22,8 +22,13 @@ dependencies:
 
 build-tools:
 - c2hs >= 0.15
+c-sources:
+- cbits/hscpython-shim.c
 include-dirs:
 - cbits
+
+# other-modules:
+# - CPython.Internal
 
 library:
   source-dirs:           src

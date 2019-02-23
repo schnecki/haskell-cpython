@@ -5,4 +5,5 @@ flags: {}
 extra-package-dbs: []
 extra-deps: []
 nix:
-  packages: [python37, pkgconfig]
+  # enable: true
+  packages: [python3.7, pkgconfig]
