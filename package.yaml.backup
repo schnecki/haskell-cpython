@@ -1,0 +1,51 @@
+name:                cpython
+version:             3.7.0
+github:              "zsedem/haskell-cpython"
+license:             GPL-3
+author:              "John Millikin <jmillikin@gmail.com>"
+maintainer:          "Adam Zsigmond <zsedem@gmail.com>"
+copyright:           "Copyright (C) 2015 John Millikin"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+- cbits/hscpython-shim.h
+
+synopsis:            Bindings for libpython
+category:            Foreign
+description:         Please see the README on GitHub at <https://github.com/zsedem/haskell-cpython>
+
+dependencies:
+- base >= 4.7 && < 5
+- bytestring
+- text
+
+build-tools:
+- c2hs >= 0.15
+c-sources:
+- cbits/hscpython-shim.c
+include-dirs:
+- cbits
+
+# other-modules:
+# - CPython.Internal
+
+library:
+  source-dirs:           src
+  ghc-options:
+  - -Wall
+  - -O2
+  - -fno-warn-orphans
+  cc-options:
+  - -fPIC
+
+tests:
+  python-test:
+    main:                Test.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - haskell-cpython

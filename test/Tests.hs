@@ -54,12 +54,12 @@ test_PythonHome = assertions "python-home" $ do
 	do
 		defaultHome <- liftIO getPythonHome
 		$expect (equal defaultHome Nothing)
-	
+
 	do
 		liftIO (setPythonHome (Just "/python/home"))
 		newHome <- liftIO getPythonHome
 		$expect (equal newHome (Just "/python/home"))
-	
+
 	do
 		liftIO (setPythonHome Nothing)
 		newHome <- liftIO getPythonHome
