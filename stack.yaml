@@ -4,5 +4,6 @@ packages:
 flags: {}
 extra-package-dbs: []
 extra-deps: []
+  # monad-loops
 nix:
   packages: [python35, pkgconfig]

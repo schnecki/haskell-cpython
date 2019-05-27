@@ -22,3 +22,4 @@ executable haskell-cpython-tests
     , cpython
     , text >= 0.11.1.5 && < 0.12
     , transformers
+    , monad-loops
