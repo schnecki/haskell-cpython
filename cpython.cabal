@@ -6,6 +6,7 @@ author: John Millikin <jmillikin@gmail.com>
 maintainer: John Millikin <jmillikin@gmail.com>
 build-type: Simple
 cabal-version: >= 1.8
+-- cabal-version: >= 1.10
 category: Foreign
 homepage: https://john-millikin.com/software/haskell-python/
 
@@ -28,6 +29,7 @@ source-repository this
   tag: haskell-cpython_3.5.0
 
 library
+  -- default-language:    Haskell2010
   ghc-options: -Wall -O2 -fno-warn-orphans -fno-warn-tabs
   cc-options: -fPIC
   hs-source-dirs: lib
@@ -83,10 +85,12 @@ library
 
   pkgconfig-depends: python3
 
--- executable pyFft
---   ghc-options: -Wall -O2 -fno-warn-orphans
---   hs-source-dirs: tests
---   main-is: fft.hs
---   build-depends:
---       cpython
---     , monad-loops
+executable fft
+  default-language:    Haskell2010
+  main-is:             exe/fft.hs
+  build-depends:       base >=4.0 && <5.0
+                     , cpython
+                     , filepath
+                     , monad-loops
+                     , text
+  pkgconfig-depends: python3
