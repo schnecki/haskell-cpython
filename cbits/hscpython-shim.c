@@ -36,7 +36,7 @@ static wchar_t *hscpython_wcsdup(wchar_t *s)
 
 	new = new0 = malloc(sizeof(wchar_t) * len);
 	s = orig;
-	while (*(new++) = *(s++)) {
+	while ((*(new++) = *(s++))) {
 	}
 	return new0;
 }

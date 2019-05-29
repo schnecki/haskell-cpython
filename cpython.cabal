@@ -5,8 +5,7 @@ license-file: license.txt
 author: John Millikin <jmillikin@gmail.com>
 maintainer: John Millikin <jmillikin@gmail.com>
 build-type: Simple
-cabal-version: >= 1.8
--- cabal-version: >= 1.10
+cabal-version: >= 1.10
 category: Foreign
 homepage: https://john-millikin.com/software/haskell-python/
 
@@ -29,9 +28,9 @@ source-repository this
   tag: haskell-cpython_3.5.0
 
 library
-  -- default-language:    Haskell2010
+  default-language:    Haskell98
   ghc-options: -Wall -O2 -fno-warn-orphans -fno-warn-tabs
-  cc-options: -fPIC
+  cc-options: -fPIC -Wno-deprecated-declarations
   hs-source-dirs: lib
 
   build-depends:
@@ -93,4 +92,3 @@ executable fft
                      , filepath
                      , monad-loops
                      , text
-  pkgconfig-depends: python3

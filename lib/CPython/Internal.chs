@@ -82,7 +82,7 @@ import           Control.Applicative ((<$>))
 import qualified Control.Exception as E
 import qualified Data.Text as T
 import           Data.Typeable (Typeable)
-import           Foreign hiding (unsafePerformIO)
+import           Foreign -- hiding (unsafePerformIO)
 import           Foreign.C
 import           System.IO.Unsafe (unsafePerformIO)
 
