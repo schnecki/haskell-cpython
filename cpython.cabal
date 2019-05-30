@@ -78,7 +78,7 @@ library
 
   other-modules:
     CPython.Internal
-
+                
   c-sources: cbits/hscpython-shim.c
   include-dirs: cbits
 
@@ -86,9 +86,28 @@ library
 
 executable fft
   default-language:    Haskell2010
-  main-is:             exe/fft.hs
+  main-is:             test/fft.hs
   build-depends:       base >=4.0 && <5.0
                      , cpython
                      , filepath
                      , monad-loops
                      , text
+
+executable import
+  default-language:    Haskell2010
+  main-is:             test/import.hs
+  build-depends:       base >=4.0 && <5.0
+                     , cpython
+                     , filepath
+                     , monad-loops
+                     , text
+
+executable version
+  default-language:    Haskell2010
+  main-is:             test/version.hs
+  build-depends:       base >=4.0 && <5.0
+                     , cpython
+                     , filepath
+                     , monad-loops
+                     , text
+
