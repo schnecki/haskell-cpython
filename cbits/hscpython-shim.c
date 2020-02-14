@@ -120,7 +120,6 @@ void hscpython_Py_INCREF(PyObject *o)
 
 void hscpython_Py_DECREF(PyObject *o)
 {
-  // printf("hscpython_Py_DECREF, %p\n", o);
   /* void *array[10]; */
   /* size_t size; */
   /* char **strings; */
@@ -137,7 +136,9 @@ void hscpython_Py_DECREF(PyObject *o)
     printf("\n\nIMPORTANT WARNING: Due to a SIGSEGV error decreasing the reference counter is disabled. Thus using this library will likely cause a memory leak!\n\n");
     notified = 1;
   }
-  /* Py_DECREF(o); */
+
+  /* printf("hscpython_Py_DECREF, %p\n", o); */
+  Py_DECREF(o);
   // printf("hscpython_Py_DECREF out\n");
 }
 

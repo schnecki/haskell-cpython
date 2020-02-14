@@ -161,6 +161,7 @@ peekObject ptr = do
   where
     incPtr = incref ptr >> return ptr
     mkObj _ = fromForeignPtr <$> newForeignPtr staticDecref (castPtr ptr)
+    -- mkObj _ = fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
 
 peekStaticObject :: Object obj => Ptr a -> IO obj
 peekStaticObject ptr = fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
@@ -168,7 +169,8 @@ peekStaticObject ptr = fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
 unsafeStealObject :: Object obj => Ptr a -> IO obj
 unsafeStealObject ptr = do
   -- putStrLn "unsafeStealObject" >> hFlush stdout
-  res <- fromForeignPtr <$> newForeignPtr staticDecref (castPtr ptr)
+  -- res <- fromForeignPtr <$> newForeignPtr staticDecref (castPtr ptr)
+  res <- fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
   -- putStrLn "unsafeStealObject done" >> hFlush stdout
   return res
 
@@ -221,7 +223,7 @@ instance E.Exception Exception
 exceptionIf :: Bool -> IO ()
 exceptionIf False = return ()
 exceptionIf True = do
-      putStrLn "exceptionIf" >> hFlush stdout
+      -- putStrLn "exceptionIf" >> hFlush stdout
       alloca $ \pType ->
         alloca $ \pValue ->
         alloca $ \pTrace -> do
