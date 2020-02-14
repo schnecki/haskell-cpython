@@ -3,3 +3,8 @@
 *.swo
 *.swp
 *.swn
+/.hpc/
+/TAGS
+/cbits/TAGS
+/cpython-tests.tix
+/stack.yaml.lock
