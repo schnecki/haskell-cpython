@@ -58,6 +58,10 @@ matrix:
     compiler: ": #stack 8.4.3"
     addons: {apt: {packages: [ pkg-config]}}
 
+  - env: BUILD=stack ARGS="--resolver lts-14.25"
+    compiler: ": #stack 8.6.5"
+    addons: {apt: {packages: [ pkg-config]}}
+
   - env: BUILD=stack ARGS="--resolver nightly"
     compiler: ": #stack nightly"
     addons: {apt: {packages: [ pkg-config]}}
