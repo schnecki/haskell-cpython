@@ -15,7 +15,7 @@ language: python
 # Use new container infrastructure to enable caching
 sudo: required
 
-dist: xenial
+dist: focal
 
 python:
   - "3.8"
@@ -108,3 +108,5 @@ script:
   echo $PKG_CONFIG_PATH
   export PKG_CONFIG_PATH
   stack --no-terminal $ARGS test --bench --no-run-benchmarks --haddock --no-haddock-deps
+
+
