@@ -169,8 +169,9 @@ peekStaticObject ptr = fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
 unsafeStealObject :: Object obj => Ptr a -> IO obj
 unsafeStealObject ptr = do
   -- putStrLn "unsafeStealObject" >> hFlush stdout
-  -- res <- fromForeignPtr <$> newForeignPtr staticDecref (castPtr ptr)
-  res <- fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
+  incref ptr -- need to increase the pointer counter to prevent the object of being freed
+  res <- fromForeignPtr <$> newForeignPtr staticDecref (castPtr ptr)
+  -- res <- fromForeignPtr <$> newForeignPtr_ (castPtr ptr)
   -- putStrLn "unsafeStealObject done" >> hFlush stdout
   return res
 
@@ -223,7 +224,6 @@ instance E.Exception Exception
 exceptionIf :: Bool -> IO ()
 exceptionIf False = return ()
 exceptionIf True = do
-      -- putStrLn "exceptionIf" >> hFlush stdout
       alloca $ \pType ->
         alloca $ \pValue ->
         alloca $ \pTrace -> do

@@ -18,54 +18,6 @@
 #include <hscpython-shim.h>
 #include <execinfo.h>
 
-int notified = 0;
-
-// DEPRECATION WARNINGS: TODO fix
-/////////////////////////////////
-/*  cbits/hscpython-shim.c: In function ‘hscpython_PyUnicode_GetSize’: */
-/*   */
-/*  ./haskell-cpython/cbits/hscpython-shim.c:282:3: error: */
-/*       warning: ‘PyUnicode_GetSize’ is deprecated [-Wdeprecated-declarations] */
-/*         return PyUnicode_GetSize(o); */
-/*         ^~~~~~ */
-/*      | */
-/*  282 |   return PyUnicode_GetSize(o); */
-/*      |   ^ */
-/*  In file included from /usr/include/python3.8/Python.h:97, */
-/*                   from cbits/hscpython-shim.h:4, */
-/*   */
-/*  ./haskell-cpython/                 from cbits/hscpython-shim.c:18:0: error:  */
-/*   */
-/*  ./haskell-cpython//usr/include/python3.8/unicodeobject.h:177:43: error: */
-/*       note: declared here */
-/*       Py_DEPRECATED(3.3) PyAPI_FUNC(Py_ssize_t) PyUnicode_GetSize( */
-/*                                                 ^~~~~~~~~~~~~~~~~ */
-/*      | */
-/*  177 | Py_DEPRECATED(3.3) PyAPI_FUNC(Py_ssize_t) PyUnicode_GetSize( */
-/*      |                                           ^ */
-/*  cbits/hscpython-shim.c: In function ‘hscpython_PyUnicode_GetSize’: */
-/*   */
-/*  ./haskell-cpython/cbits/hscpython-shim.c:282:3: error: */
-/*       warning: ‘PyUnicode_GetSize’ is deprecated [-Wdeprecated-declarations] */
-/*         return PyUnicode_GetSize(o); */
-/*         ^~~~~~ */
-/*      | */
-/*  282 |   return PyUnicode_GetSize(o); */
-/*      |   ^ */
-/*  In file included from /usr/include/python3.8/Python.h:97, */
-/*                   from cbits/hscpython-shim.h:4, */
-/*   */
-/*  ./haskell-cpython/                 from cbits/hscpython-shim.c:18:0: error:  */
-/*   */
-/*  ./haskell-cpython//usr/include/python3.8/unicodeobject.h:177:43: error: */
-/*       note: declared here */
-/*       Py_DEPRECATED(3.3) PyAPI_FUNC(Py_ssize_t) PyUnicode_GetSize( */
-/*                                                 ^~~~~~~~~~~~~~~~~ */
-/*      | */
-/*  177 | Py_DEPRECATED(3.3) PyAPI_FUNC(Py_ssize_t) PyUnicode_GetSize( */
-/*      |                                           ^ */
-
-
 /* Initialization helpers */
 static wchar_t *program_name = NULL;
 static wchar_t *python_home = NULL;
@@ -113,33 +65,17 @@ void hscpython_SetPythonHome(wchar_t *s)
 /* Object */
 void hscpython_Py_INCREF(PyObject *o)
 {
-  // printf("hscpython_Py_INCREF\n");
+  /* printf("hscpython_Py_INCREF: %p\n", o); */
   Py_INCREF(o);
   // printf("hscpython_Py_INCREF out\n");
 }
 
 void hscpython_Py_DECREF(PyObject *o)
 {
-  /* void *array[10]; */
-  /* size_t size; */
-  /* char **strings; */
-  /* size_t i; */
 
-  /* size = backtrace(array, 10); */
-  /* strings = backtrace_symbols (array, size); */
-  /* // printf ("Obtained %zd stack frames.\n", size); */
-  /* for (i = 0; i < size; i++) */
-  /*    // printf ("%s\n", strings[i]); */
-  /* free (strings); */
-  
-  if (notified == 0) {
-    printf("\n\nIMPORTANT WARNING: Due to a SIGSEGV error decreasing the reference counter is disabled. Thus using this library will likely cause a memory leak!\n\n");
-    notified = 1;
-  }
-
-  /* printf("hscpython_Py_DECREF, %p\n", o); */
+  /* printf("hscpython_Py_DECREF, %p, %p\n", o, &o); */
   Py_DECREF(o);
-  // printf("hscpython_Py_DECREF out\n");
+  /* printf("hscpython_Py_DECREF out\n"); */
 }
 
 int hscpython_PyObject_DelAttr(PyObject *o, PyObject *name)
@@ -345,7 +281,8 @@ PyObject *hscpython_Py_False()
 Py_ssize_t hscpython_PyUnicode_GetSize(PyObject *o)
 {
   // printf("hscpython_PyUnicode_GetSize\n");
-  return PyUnicode_GetSize(o);
+  /* return PyUnicode_GetSize(o); */
+  return PyUnicode_GetLength(o); /* GetSize is deprecated */
   // printf("hscpython_PyUnicode_GetSize out\n");
 }
 
