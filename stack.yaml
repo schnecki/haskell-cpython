@@ -7,4 +7,4 @@ extra-deps:
 - patience-0.3@sha256:fe3a2c5b1ac4d3425bad3d1ee0b6bb529b6e74ab41151f8526f26fc8dfa1206b,1252
 - ansi-terminal-0.8.2@sha256:56aeb0dbbf83905dfb39e11047d9f8562ab1e7eb601b2492082ba5b5a0fc80ec,3116
 nix:
-  packages: [python38, pkgconfig]
+  packages: [python39, pkgconfig]
